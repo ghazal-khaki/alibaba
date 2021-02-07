@@ -5,24 +5,33 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lint:fix": "eslint --fix src/**/*.vue src/**/*.js src/*.js src/*.vue",
+    "release": "standard-version"
   },
   "dependencies": {
+    "bootstrap": "^4.6.0",
+    "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "vue": "^2.6.12"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/eslint-config-standard": "^5.1.2",
     "babel-eslint": "^10.1.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^6.2.2",
+    "husky": "^4.3.8",
+    "standard-version": "^9.1.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
@@ -37,11 +46,35 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "semi": [
+        "error",
+        "never"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "indent": [
+        "error",
+        2
+      ]
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:fix",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
