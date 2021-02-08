@@ -1,4 +1,5 @@
-# arvan
+# Alibaba
+This is a test project to declare a global object and resolve a problem with writing an specific function with lowest growth rate.
 
 ## Project setup
 ```
@@ -19,6 +20,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
