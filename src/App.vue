@@ -1,28 +1,33 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  mounted () {
+    Object.prototype.customObject.func('test')
+  },
+  methods: {
+    // DESCRIBE: this function big o notation is equal to O(2n),
+    // the growth rate is as same as O(n) and "linear" growth rate.
+    convertArray: function (array) {
+      const indexOfZeros = []
+      let newArray = []
+      let multiplication = 1
+      array.map((number, index) => {
+        if (number === 0) indexOfZeros.push(index)
+        if (number !== 0) multiplication = multiplication * number
+      })
+      newArray = new Array(array.length).fill(0)
+      if (indexOfZeros.length === 1) {
+        newArray[indexOfZeros[0]] = multiplication
+      } else if (indexOfZeros.length === 0) {
+        newArray = newArray.map((item, index) => multiplication / array[index])
+      }
+      return newArray
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
