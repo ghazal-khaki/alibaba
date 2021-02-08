@@ -1,17 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-
-// Import Bootstrap an BootstrapVue CSS files (order is important)
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-// Make BootstrapVue available throughout your project
-Vue.use(BootstrapVue)
-// Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin)
-Vue.config.productionTip = false
-
+// DESCRIBE: This error is raised to highlight the use of a technique commonly
+// regarded as bad practice.By defining custom properties on native prototypes
+// you can easily introduce problems in old browsers (in particular Internet
+// Explorer 8 and below). It's also very easy to accidentally shadow custom
+// native prototype methods.
+// eslint-disable-next-line no-extend-native
+Object.prototype.customObject = {
+  str: 'string',
+  func: (e) => console.log(e)
+}
 new Vue({
   render: h => h(App)
 }).$mount('#app')
